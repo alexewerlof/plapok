@@ -1,0 +1,24 @@
+body {
+  background-color: #ffea6f;
+  color: #3d3d35;
+  font-size: 3vmin;
+  font-family: 'Glegoo', serif;
+}
+button {
+  background-color: #3d3d35;
+  color: #ffea6f;
+  font-size: inherit;
+  border: none;
+  cursor: pointer;
+  padding: 0.5em 0.6em;
+}
+button:hover {
+  background-color: #67675a;
+}
+.votes {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}

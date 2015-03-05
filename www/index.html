@@ -1,0 +1,28 @@
+<!doctype html>
+<html ng-app="plapok">
+<head>
+    <meta charset="UTF-8">
+    <title>Plapok</title>
+    <link rel="stylesheet" href="index.css"/>
+    <link rel="stylesheet" href="bower_components/fontawesome/css/font-awesome.min.css"/>
+    <link href='http://fonts.googleapis.com/css?family=Glegoo' rel='stylesheet' type='text/css'>
+    <script src="bower_components/angular/angular.min.js"></script>
+    <script src="index.js"></script>
+</head>
+<body ng-controller="IndexCtrl">
+<h1>plapok</h1>
+<table class="people">
+    <tr ng-repeat="voter in voters | orderBy : name">
+        <td>{{voter.name}}</td>
+        <td>{{voter.vote}}</td>
+    </tr>
+    </tbody>
+</table>
+<button ng-click="startVoting()">Vote</button>
+<div class=""
+     ng-show="amVoting">
+    <button class="card"
+        ng-repeat="choice in choices">{{choice}}</button>
+</div>
+</body>
+</html>

@@ -1,0 +1,28 @@
+color1 = #ffea6f
+color2 = #3d3d35
+
+card-bg = darken(color1, 30%)
+
+body
+  background-color color1
+  color color2
+  font-size 3vmin
+  font-family 'Glegoo', serif;
+
+button
+  background-color color2
+  color color1
+  font-size inherit
+  border none
+  cursor pointer
+  padding 0.5em 0.6em
+
+  &:hover
+    background-color lighten(color2, 20%)
+
+.votes
+  position fixed
+  top 0
+  left 0
+  right 0
+  bottom 0
