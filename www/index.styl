@@ -3,11 +3,27 @@ color2 = #3d3d35
 
 card-bg = darken(color1, 30%)
 
+.unselectable
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+
+.selectable
+  -moz-user-select: all;
+  -webkit-user-select: all;
+  -ms-user-select: all;
+  user-select: all;
+
 body
   background-color color1
   color color2
   font-size 3vmin
   font-family 'Glegoo', serif;
+  @extend .unselectable;
+
+label
+  cursor pointer
 
 button
   background-color color2
@@ -27,6 +43,7 @@ input[type=text]
   border none
   cursor pointer
   padding 0.5em 0.6em
+  @extend .selectable
 
   &:hover
     background-color saturate(color1, 40%)
@@ -37,3 +54,9 @@ input[type=text]
   left 0
   right 0
   bottom 0
+
+.socket-id
+  opacity 0.6
+  font-size smaller
+  display block
+  @extend .selectable

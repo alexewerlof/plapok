@@ -1,8 +1,26 @@
+.unselectable,
+body {
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.selectable,
+input[type=text],
+.socket-id {
+  -moz-user-select: all;
+  -webkit-user-select: all;
+  -ms-user-select: all;
+  user-select: all;
+}
 body {
   background-color: #ffea6f;
   color: #3d3d35;
   font-size: 3vmin;
   font-family: 'Glegoo', serif;
+}
+label {
+  cursor: pointer;
 }
 button {
   background-color: #3d3d35;
@@ -32,4 +50,9 @@ input[type=text]:hover {
   left: 0;
   right: 0;
   bottom: 0;
+}
+.socket-id {
+  opacity: 0.6;
+  font-size: smaller;
+  display: block;
 }

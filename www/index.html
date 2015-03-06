@@ -18,7 +18,7 @@
        ng-model="myName"
        ng-change="rename()"
        ng-disabled="!isConnected()" />
-<small>{{id}}</small>
+<small class="socket-id">{{id}}</small>
 <table class="people">
     <tr ng-repeat="voter in voters">
         <td>{{voter}}</td>
