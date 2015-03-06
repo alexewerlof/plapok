@@ -4,6 +4,7 @@ angular.module('plapok', [])
     .controller('IndexCtrl', function ($scope) {
         var socket = io();
         $scope.myName = '';
+        $scope.amActive = false;
         $scope.amVoting = false;
         $scope.choices = [1, 2, 3, 4, 7, '?'];
         $scope.voters = [];
@@ -12,8 +13,17 @@ angular.module('plapok', [])
             if ($scope.myName) {
                 $scope.rename();
             }
+            if ($scope.amActive) {
+                socket.emit('isActive', true);
+            }
             $scope.$apply();
         });
+        $scope.$watch('amActive', function (value) {
+            socket.emit('isActive', value);
+        });
+        $scope.isConnected = function () {
+            return socket.connected;
+        };
         socket.on('votersChanged', function(voters){
             $scope.voters = voters;
             $scope.$apply();

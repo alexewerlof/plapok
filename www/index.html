@@ -12,7 +12,12 @@
 </head>
 <body ng-controller="IndexCtrl">
 <h1>plapok</h1>
-<input type="text" placeholder="Name" ng-model="myName" ng-change="rename()"/>
+<input type="text"
+       placeholder="Name"
+       autocomplete="on"
+       ng-model="myName"
+       ng-change="rename()"
+       ng-disabled="!isConnected()" />
 <small>{{id}}</small>
 <table class="people">
     <tr ng-repeat="voter in voters">
@@ -21,7 +26,12 @@
     </tr>
     </tbody>
 </table>
-<button ng-click="startVoting()">Vote</button>
+<label>
+    <input ng-model="amActive" type="checkbox" />
+    Active
+</label>
+<button ng-disabled="!amActive"
+        ng-click="startVoting()">Vote</button>
 <div class=""
      ng-show="amVoting">
     <button class="card"
