@@ -15,6 +15,17 @@ button {
 button:hover {
   background-color: #67675a;
 }
+input[type=text] {
+  background-color: #fff461;
+  color: inherit;
+  font-size: inherit;
+  border: none;
+  cursor: pointer;
+  padding: 0.5em 0.6em;
+}
+input[type=text]:hover {
+  background-color: #fffe52;
+}
 .votes {
   position: fixed;
   top: 0;
