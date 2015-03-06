@@ -30,7 +30,11 @@ button {
   cursor: pointer;
   padding: 0.5em 0.6em;
 }
-button:hover {
+button[disabled] {
+  background-color: #919180;
+  cursor: not-allowed;
+}
+button:hovernot:not([disabled]) {
   background-color: #67675a;
 }
 input[type=text] {

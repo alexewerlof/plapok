@@ -13,12 +13,18 @@
 <body ng-controller="IndexCtrl">
 <h1>plapok</h1>
 <input type="text"
-       placeholder="Name"
-       autocomplete="on"
-       ng-model="myName"
-       ng-change="rename()"
+       placeholder="Room"
+       ng-model="myRoom"
        ng-disabled="!isConnected()" />
+<button ng-click="join()">Join</button>
+<br>
+<input type="text"
+       placeholder="Name"
+       ng-model="myName"
+       ng-disabled="!isConnected()" />
+<button ng-click="rename()">Rename</button>
 <small class="socket-id">{{id}}</small>
+<small class="socket-status">{{status}}</small>
 <table class="people">
     <tr ng-repeat="voter in voters">
         <td>{{voter}}</td>
@@ -27,10 +33,10 @@
     </tbody>
 </table>
 <label>
-    <input ng-model="amActive" type="checkbox" />
+    <input ng-model="isActive" type="checkbox" />
     Active
 </label>
-<button ng-disabled="!amActive"
+<button ng-disabled="!isActive"
         ng-click="startVoting()">Vote</button>
 <div class=""
      ng-show="amVoting">

@@ -33,7 +33,11 @@ button
   cursor pointer
   padding 0.5em 0.6em
 
-  &:hover
+  &[disabled]
+    background-color lighten(color2, 40%)
+    cursor not-allowed
+
+  &:hovernot:not([disabled])
     background-color lighten(color2, 20%)
 
 input[type=text]
