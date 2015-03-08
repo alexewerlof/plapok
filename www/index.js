@@ -7,7 +7,7 @@ angular.module('plapok', [])
         $scope.myRoom = localStorage['myRoom'] || '';
         $scope.isActive = false;
         $scope.amVoting = false;
-        $scope.choices = [1, 2, 3, 4, 7, '?'];
+        $scope.choices = [1, 2, 3, 5, 8, 13, 21, '?'];
         $scope.voters = [];
         $scope.status = 'connecting...';
         socket.on('connect', function(){
@@ -50,7 +50,7 @@ angular.module('plapok', [])
         });
         $scope.votes = {};
         socket.on('voteReceived', function(voter, vote){
-            $scope.votes[voter] = vote;
+            $scope.voters[voter] = vote;
             $scope.$apply();
         });
         $scope.startVoting = function () {
@@ -65,5 +65,8 @@ angular.module('plapok', [])
         };
         $scope.join = function () {
             socket.emit('join', $scope.myRoom);
+        };
+        $scope.leave = function () {
+            socket.emit('leave', $scope.myRoom);
         };
     });

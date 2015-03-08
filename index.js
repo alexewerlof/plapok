@@ -14,7 +14,7 @@ function getSocketNames(sockets) {
 
 io.on('connection', function(socket){
     console.log(socket.id, 'connected');
-    var voter = new Voter(socket);
+    var voter = new Voter(io, socket);
 });
 
 http.listen(3000, function(){
