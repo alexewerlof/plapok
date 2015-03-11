@@ -52,13 +52,8 @@ angular.module('plapok', [])
       $scope.$apply();
     });
     $scope.votes = {};
-    socket.on('voteReceived', function (voter, vote) {
-      var existingVoter = _.findWhere($scope.voters, {name: voter});
-      if (existingVoter) {
-        existingVoter.vote = vote;
-      } else {
-        $scope.voters.push({name: voter, vote: vote});
-      }
+    socket.on('update', function (room) {
+      $scope.room = room;
       $scope.$apply();
     });
     $scope.startVoting = function () {

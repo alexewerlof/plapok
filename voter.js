@@ -1,4 +1,4 @@
-var Room = require('./room');
+var election = require('./election');
 
 function Voter(io, socket) {
   this._io = io;
@@ -9,7 +9,6 @@ function Voter(io, socket) {
   ['isActive', 'vote', 'join', 'leave', 'rename', 'disconnect'].forEach(function (eventName) {
     this.addEventListener(eventName, this[eventName]);
   }, this);
-  this.tellRoommates('votersChanged');
 }
 
 Voter.prototype.addEventListener = function (name, handler) {
@@ -24,42 +23,45 @@ Voter.prototype.getRoom = function () {
   return this._socket.rooms[0];
 };
 
-Voter.prototype.tellRoommates = function (/* arguments */) {
-  var roomName = this.getRoom();
-  if (roomName) {
-    var roommates = this._io.sockets.in(roomName);
-    roommates.emit.apply(roommates, arguments);
-  } else {
-    console.warn(this.name, 'cannot tell roommates because socket is not in any room');
-  }
-};
-
 Voter.prototype.isActive = function (value) {
   this.active = value;
+  this.sendUpdate();
 };
 
 Voter.prototype.vote = function (vote) {
   this.vote = vote;
-  this.tellRoommates('voteReceived', this.name, this.vote);
+  this.sendUpdate();
 };
 
 Voter.prototype.join = function (roomName) {
   this.leave();
-  this._socket.join(roomName);
+  this.room = election.getElection(this._io, this.name);
+  this.room.add(this);
+};
+
+Voter.prototype.sendUpdate = function () {
+  if (this.room) {
+    this.room.sendUpdate();
+  }
 };
 
 Voter.prototype.leave = function () {
+  //TODO: update the old Election after leaving
+  //TODO: use Election
   for (var i = 0; i < this._socket.rooms.length; i++) {
     this._socket.leave(this._socket.rooms[i]);
   }
+  this.sendUpdate();
 };
 
 Voter.prototype.rename = function (name) {
   this.name = name;
+  this.sendUpdate();
 };
 
 Voter.prototype.disconnect = function () {
   //release all event listeners and set the socket to null so that it can be garbage collected
+  this.sendUpdate();
 };
 
 module.exports = Voter;

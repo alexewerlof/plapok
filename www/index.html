@@ -30,7 +30,7 @@
 <i ng-hide="connected" class="fa fa-chain-broken"></i>
 <small class="socket-status">{{status}}</small>
 <table class="people">
-    <tr ng-repeat="voter in voters">
+    <tr ng-repeat="voter in room.members">
         <td>{{voter.name}}</td>
         <td>{{voter.vote}}</td>
     </tr>
