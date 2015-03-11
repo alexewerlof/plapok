@@ -8,6 +8,7 @@
     <link href='http://fonts.googleapis.com/css?family=Glegoo' rel='stylesheet' type='text/css'>
     <script src="/socket.io/socket.io.js"></script>
     <script src="bower_components/angular/angular.min.js"></script>
+    <script src="bower_components/underscore/underscore.js"></script>
     <script src="index.js"></script>
 </head>
 <body ng-controller="IndexCtrl">
@@ -25,11 +26,13 @@
        ng-disabled="!isConnected()" />
 <button ng-click="rename()">Rename</button>
 <small class="socket-id">{{id}}</small>
+<i ng-show="connected" class="fa fa-chain"></i>
+<i ng-hide="connected" class="fa fa-chain-broken"></i>
 <small class="socket-status">{{status}}</small>
 <table class="people">
     <tr ng-repeat="voter in voters">
-        <td>{{voter}}</td>
-        <td>{{votes[voter]}}</td>
+        <td>{{voter.name}}</td>
+        <td>{{voter.vote}}</td>
     </tr>
     </tbody>
 </table>

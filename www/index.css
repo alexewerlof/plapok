@@ -26,6 +26,7 @@ button {
   background-color: #3d3d35;
   color: #ffea6f;
   font-size: inherit;
+  font-family: inherit;
   border: none;
   cursor: pointer;
   padding: 0.5em 0.6em;
@@ -38,15 +39,16 @@ button:hovernot:not([disabled]) {
   background-color: #67675a;
 }
 input[type=text] {
-  background-color: #fff461;
+  background-color: rgba(61,61,53,0.1);
   color: inherit;
   font-size: inherit;
   border: none;
   cursor: pointer;
   padding: 0.5em 0.6em;
+  font-family: inherit;
 }
 input[type=text]:hover {
-  background-color: #fffe52;
+  background-color: rgba(61,61,53,0.2);
 }
 .votes {
   position: fixed;

@@ -3,20 +3,15 @@ var app = express();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 var Voter = require('./voter');
+var Room = require('./room');
 
 app.use(express.static('www'));
 
-function getSocketNames(sockets) {
-    return sockets.map(function (socket) {
-        return names[socket.id] || socket.id;
-    });
-}
-
-io.on('connection', function(socket){
-    console.log(socket.id, 'connected');
-    var voter = new Voter(io, socket);
+io.on('connection', function (socket) {
+  console.log(socket.id, 'connected');
+  var voter = new Voter(io, socket);
 });
 
-http.listen(3000, function(){
-    console.log('listening on *:3000');
+http.listen(3000, function () {
+  console.log('listening on *:3000');
 });

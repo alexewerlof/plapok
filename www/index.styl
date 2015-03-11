@@ -29,6 +29,7 @@ button
   background-color color2
   color color1
   font-size inherit
+  font-family inherit
   border none
   cursor pointer
   padding 0.5em 0.6em
@@ -41,16 +42,17 @@ button
     background-color lighten(color2, 20%)
 
 input[type=text]
-  background-color saturate(color1, 20%)
+  background-color alpha(color2, 0.1)
   color inherit
   font-size inherit
   border none
   cursor pointer
   padding 0.5em 0.6em
+  font-family inherit
   @extend .selectable
 
   &:hover
-    background-color saturate(color1, 40%)
+    background-color alpha(color2, 0.2)
 
 .votes
   position fixed
