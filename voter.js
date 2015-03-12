@@ -9,6 +9,7 @@ function Voter(io, socket) {
   ['isActive', 'vote', 'join', 'leave', 'rename', 'disconnect'].forEach(function (eventName) {
     this.addEventListener(eventName, this[eventName]);
   }, this);
+
 }
 
 Voter.prototype.addEventListener = function (name, handler) {
