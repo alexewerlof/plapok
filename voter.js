@@ -6,18 +6,14 @@ function Voter(io, socket) {
   //leave the default room
   this.leave();
   this.name = this._socket.id;
-  ['isActive', 'vote', 'join', 'leave', 'rename', 'disconnect'].forEach(function (eventName) {
-    this.addEventListener(eventName, this[eventName]);
-  }, this);
-}
-
-Voter.prototype.addEventListener = function (name, handler) {
   var self = this;
-  self._socket.on(name, function (/* arguments */) {
-    handler.apply(self, arguments);
-    console.info(self._socket.id, self.name, name, arguments);
+  ['isActive', 'vote', 'join', 'leave', 'rename', 'disconnect'].forEach(function (eventName) {
+    self._socket.on(eventName, function (/* arguments */) {
+      self[eventName].apply(self, arguments);
+      console.info(self._socket.id + '(' + self.name + ')', eventName, arguments);
+    });
   });
-};
+}
 
 Voter.prototype.getRoom = function () {
   return this._socket.rooms[0];

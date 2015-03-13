@@ -3,7 +3,6 @@ var app = express();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 var Voter = require('./voter');
-var Room = require('./room');
 
 app.use(express.static('www'));
 

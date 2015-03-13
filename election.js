@@ -1,9 +1,16 @@
+var _ = require('underscore');
+
 //This object holds the mapping between room names and their Room objects
 var rooms = {};
 
 //A factory method that either returns an exisitng room or creates a new one
 function getElection (io, name) {
-  return rooms[name] || new Election(io, name);
+  var normalizedName = name.toLowerCase();
+  var existingRoom = rooms[normalizedName];
+  if (!existingRoom) {
+    rooms[normalizedName] = new Election(io, name);
+  }
+  return rooms[normalizedName];
 }
 
 function Election(io, name) {
@@ -27,6 +34,12 @@ Election.prototype.tellMembers = function () {
 
 Election.prototype.add = function (voter) {
   voter.join(this._name);
+  this.sendUpdate();
+};
+
+Election.prototype.remove = function (voter) {
+  //TODO: if it is the last voter in the election, remove the room from the rooms array and destroy
+  voter.leave(this._name);
   this.sendUpdate();
 };
 
